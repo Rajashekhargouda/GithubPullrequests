@@ -7,20 +7,19 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
+import android.widget.Toast
 import com.meeshotask.myapp.R
 import com.meeshotask.myapp.adapter.PullRequestAdapter
 import com.meeshotask.myapp.databinding.ActivityPullRequestBinding
 import com.meeshotask.myapp.model.PullRequestUIModel
-import com.meeshotask.myapp.util.Constants
-import com.meeshotask.myapp.util.hide
-import com.meeshotask.myapp.util.show
+import com.meeshotask.myapp.util.*
 import com.meeshotask.myapp.viewmodel.PullRequestResponse
 import com.meeshotask.myapp.viewmodel.PullRequestViewModel
 import kotlinx.android.synthetic.main.activity_pull_request.*
 
 class PullRequestActivity : AppCompatActivity() {
-    lateinit var pullRequestViewModel:PullRequestViewModel
-    lateinit var activityBinding: ActivityPullRequestBinding
+    private lateinit var pullRequestViewModel:PullRequestViewModel
+    private lateinit var activityBinding: ActivityPullRequestBinding
     lateinit var repoName: String
     lateinit var ownerName:String
 
@@ -42,7 +41,10 @@ class PullRequestActivity : AppCompatActivity() {
 
    private fun getPullRequests(){
        try {
-           pullRequestViewModel.getPullRequests(ownerName,repoName)
+           if (NetworkUtil.isNetworkConnected(this)){
+               pullRequestViewModel.getPullRequests(ownerName,repoName)
+           }else ViewUtil.showToastErrorMsg(this,
+               getString(R.string.connect_to_internet),Toast.LENGTH_SHORT)
        }catch (e:Exception){
            e.printStackTrace()
        }
@@ -66,15 +68,14 @@ class PullRequestActivity : AppCompatActivity() {
                     progressBar.hide()
                     txt_error_msg.hide()
                     updateList(it.list)
-
                 }
+
                 is PullRequestResponse.Error ->{
                     progressBar.hide()
                     txt_error_msg.show()
                     txt_error_msg.text = it.errorMsg
-
-
                 }
+
                 is PullRequestResponse.Loading ->{
                     progressBar.show()
                     txt_error_msg.hide()

@@ -8,10 +8,11 @@ import com.meeshotask.myapp.R
 import com.meeshotask.myapp.databinding.ItemPullRequestBinding
 import com.meeshotask.myapp.model.PullRequestUIModel
 
-class PullRequestAdapter(var itemList:List<PullRequestUIModel>):RecyclerView.Adapter<PullRequestAdapter.ViewHolder>() {
+class PullRequestAdapter(private var itemList:List<PullRequestUIModel>):RecyclerView.Adapter<PullRequestAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): ViewHolder {
-        val itemPullRequestBinding = DataBindingUtil.inflate<ItemPullRequestBinding>(LayoutInflater
+        val itemPullRequestBinding = DataBindingUtil.
+            inflate<ItemPullRequestBinding>(LayoutInflater
             .from(viewGroup.context),
             R.layout.item_pull_request,viewGroup,false)
         return ViewHolder(itemPullRequestBinding)
@@ -27,7 +28,7 @@ class PullRequestAdapter(var itemList:List<PullRequestUIModel>):RecyclerView.Ada
     }
 
 
-    class ViewHolder(var pullRequestBinding: ItemPullRequestBinding) :
+    class ViewHolder(private var pullRequestBinding: ItemPullRequestBinding) :
         RecyclerView.ViewHolder(pullRequestBinding.root){
 
         fun  bind(pullRequest: PullRequestUIModel){
