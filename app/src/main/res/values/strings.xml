@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyApp</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="no_items_found">No items found</string>
+    <string name="invalid_input">Invalid input</string>
+    <string name="forks">Forks</string>
+    <string name="watches">Watch</string>
+    <string name="owner_repo_name">type owner / repo name .. </string>
+    <string name="search_activity_title">GitHub Repo Pull Requests</string>
+</resources>

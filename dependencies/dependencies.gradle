@@ -1,0 +1,44 @@
+ext{
+    def supportLibraryVersion = '28.0.0'
+    def constraintLytVersion = '1.1.3'
+    def supportGroupId          ='com.android.support'
+    //Support Libraries dependencies
+    supportDependencies = [
+            design           :"${supportGroupId}:design:${supportLibraryVersion}",
+            recyclerView     :"${supportGroupId}:recyclerview-v7:${supportLibraryVersion}",
+            appCompat        :"${supportGroupId}:appcompat-v7:${supportLibraryVersion}",
+            supportAnnotation:"${supportGroupId}:support-annotations:${supportLibraryVersion}",
+            supportCoreUI    :"${supportGroupId}:support-core-ui:${supportLibraryVersion}",
+            constraintLyt    :"${supportGroupId}.constraint:constraint-layout:$constraintLytVersion",
+    ]
+
+    def lifeCycleVersion = '1.1.1'
+    def lifeCycleGroupId = 'android.arch.lifecycle'
+    //LifeCycleComponents
+
+    lifeCycleComponentDependencies = [
+            runtime         :"${lifeCycleGroupId}:runtime:${lifeCycleVersion}",
+            extensions      :"${lifeCycleGroupId}:extensions:${lifeCycleVersion}",
+            compiler        :"${lifeCycleGroupId}:compiler:${lifeCycleVersion}",
+    ]
+
+    def reactGroupId = "io.reactivex.rxjava2"
+    def squareGroupId = "com.squareup"
+    def rxjavaVersion = "2.1.13"
+    def rxandroidVersion = "2.0.2"
+
+    rxjavaLibraries = [
+            rxjava : "${reactGroupId}:rxjava:${rxjavaVersion}",
+            rxAndroid : "${reactGroupId}:rxandroid:${rxandroidVersion}"
+    ]
+
+    def retrofitVersion = "2.3.0"
+    retrofitLibraries = [
+            retrofit:"${squareGroupId}.retrofit2:retrofit:${retrofitVersion}",
+            converter:"${squareGroupId}.retrofit2:converter-gson:${retrofitVersion}",
+            interceptor:"${squareGroupId}.okhttp3:logging-interceptor:3.4.1",
+            scalars:"${squareGroupId}.retrofit2:converter-scalars:2.1.0",
+            adapters:"${squareGroupId}.retrofit2:adapter-rxjava2:2.4.0"
+    ]
+
+}

@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: rootProject.file('dependencies/dependencies.gradle')
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.meeshotask.myapp"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", '"https://api.github.com"'
+        }
+
+        release {
+            buildConfigField "String", "BASE_URL", '"https://api.github.com"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+    // acrchitecture components
+    implementation lifeCycleComponentDependencies.extensions
+    implementation lifeCycleComponentDependencies.runtime
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    kapt lifeCycleComponentDependencies.compiler
+
+    // android support
+    implementation supportDependencies.values()
+
+    // rxjava libraries
+    implementation rxjavaLibraries.values()
+
+    //retrofit libraries
+    implementation retrofitLibraries.values()
+
+
+
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    kapt "com.android.databinding:compiler:3.2.0-alpha10"
+
+}
